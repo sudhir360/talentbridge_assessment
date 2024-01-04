@@ -1,0 +1,72 @@
+<router-outlet></router-outlet>
+<div>
+    <form [formGroup]="userFrom">
+        <div>
+        <label for=" ">company</label>
+        <input type="text" formControlName="company"
+        [ngClass]="{ 'is-invalid': f.company.touched && f.company.errors }" />
+                        <div *ngIf="f.company.touched && f.company.errors" class="invalid-feedback">
+                            <div *ngIf="f.company.errors.required">coampny name required</div>
+                            <div *ngIf="f.company.errors.pattern"> only alphabets and spaces are allowed</div>
+                            <div *ngIf="f.company.errors.minlength||f.company.errors.maxLength">company name min length shoud be 3 and max length should be 31</div>
+        </div>
+        <div>
+        <label for=""></label>admin<input type="text" formControlName="admin" 
+        [ngClass]="{ 'is-invalid': f.admin.touched && f.admin.errors }"
+/>
+        <div *ngIf="f.admin.touched && f.admin.errors" class="invalid-feedback">
+            <div *ngIf="f.admin.errors.required">First Name is required</div>
+            <div *ngIf="f.admin.errors.pattern"> only alphabets and spaces are allowed</div>
+                          
+            <div *ngIf="f.admin.errors.minlength||f.admin.errors.maxLength">admin name min length shoud be 3 and max length should be 31</div>
+</div>
+        </div>
+        </div>
+        <div>
+            <label for="">mobile</label><input type="text" formControlName="mobile"
+          />
+            <div *ngIf="f.mobile.touched && f.mobile.errors" class="invalid-feedback">
+                <div *ngIf="f.mobile.errors.pattern">mobile number is not valid</div>
+                <!-- <div *ngIf="f.admin.errors.minlength">admin name min length shoud be 3 and max length should be 31</div> -->
+    </div>
+        </div>
+        <div>
+            <label for="">E-mail</label><input type="email" formControlName="email">
+        
+            <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.pattern"> email should be valid</div>
+                <!-- <div *ngIf="f.admin.errors.minlength">admin name min length shoud be 3 and max length should be 31</div> -->
+    </div>
+    
+        </div>
+        <div>
+            <label for="">date</label><input type="date" formControlName="date">
+        <div>
+            <div></div>
+        </div>
+        </div>
+        <div>
+            <button [disabled]="userFrom.invalid" (click)="submit()">submit</button>
+        </div>
+    </form>
+</div>
+<div>
+    <table>
+        <tr>
+          <th>Company</th>
+          <th>admin</th>
+          <th>mobile</th>
+          <th>email</th>
+          <th>date</th>
+        </tr>
+        <tr *ngFor="let item of userdata">
+          <td>{{item.company}}</td>
+          <td>{{item.admin}}</td>
+          <td>{{item.mobile}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.date}}</td>
+          
+        </tr>
+       
+      </table>
+</div>
